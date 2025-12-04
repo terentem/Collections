@@ -20,7 +20,11 @@ public class MyTreeMap {
         Path startFrom = Path.of(stringRootPath);
         TreeMap<Path, TreeMapNode> trmap = new TreeMap<>(Comparator
                 .comparingInt((Path p) -> p.getNameCount())  // глибина
-                .thenComparing(Path::toString)   );
+                .thenComparing(
+                        Comparator.comparing(
+                                (Path p) -> p.toString()
+                        )
+                ));
         List<Path> allPathsList;
         System.out.println("scan startFrom= "+startFrom);
         try  (Stream<Path> allPaths = Files.walk(startFrom)){
